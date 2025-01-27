@@ -6,13 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const crackingResultDiv = document.getElementById("crackingResult")
   const loadingIndicator = document.getElementById("loadingIndicator")
 
+  const API_URL = "https://kufuli-scanner.onrender.com"
+
   checkStrengthBtn.addEventListener("click", checkPasswordStrength)
   simulateCrackingBtn.addEventListener("click", simulatePasswordCracking)
 
   async function checkPasswordStrength() {
     const password = passwordInput.value
     try {
-      const response = await fetch("http://localhost:5000/check_password", {
+      const response = await fetch(`${API_URL}/check_password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loadingIndicator.classList.remove("hidden")
       crackingResultDiv.innerHTML = ""
 
-      const response = await fetch("http://localhost:5000/simulate_cracking", {
+      const response = await fetch(`${API_URL}/simulate_cracking`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
